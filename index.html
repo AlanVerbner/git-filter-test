@@ -2,11 +2,17 @@
 <html>
 <head>
     <title>Project Alpha</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        button { padding: 10px 20px; margin: 5px; }
+        #output { margin-top: 20px; padding: 10px; border: 1px solid #ddd; }
+    </style>
 </head>
 <body>
     <h1>Project Alpha</h1>
     <div id="app">
         <button onclick="sayHello()">Say Hello</button>
+        <button onclick="calculate()">Calculate 2+3</button>
         <div id="output"></div>
     </div>
     
@@ -16,6 +22,14 @@
                 .then(res => res.json())
                 .then(data => {
                     document.getElementById('output').innerText = data.message;
+                });
+        }
+        
+        function calculate() {
+            fetch('/calculate/2/3')
+                .then(res => res.json())
+                .then(data => {
+                    document.getElementById('output').innerText = 'Result: ' + data.result;
                 });
         }
     </script>

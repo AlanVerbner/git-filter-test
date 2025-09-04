@@ -3,3 +3,6 @@ def hello():
 
 def process_data(data):
     return data.upper()
+
+def calculate(x, y):
+    return x + y

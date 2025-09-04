@@ -10,6 +10,8 @@ class DatabaseManager:
         with self.get_connection() as conn:
             conn.execute('''CREATE TABLE IF NOT EXISTS users
                            (id INTEGER PRIMARY KEY, username TEXT UNIQUE)''')
+            conn.execute('''CREATE TABLE IF NOT EXISTS sessions
+                           (id INTEGER PRIMARY KEY, user_id INTEGER, token TEXT)''')
     
     @contextmanager
     def get_connection(self):
@@ -19,3 +21,8 @@ class DatabaseManager:
             conn.commit()
         finally:
             conn.close()
+    
+    def create_user(self, username):
+        with self.get_connection() as conn:
+            conn.execute('INSERT INTO users (username) VALUES (?)', (username,))
+            return conn.lastrowid

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Project Alpha</title>
+</head>
+<body>
+    <h1>Project Alpha</h1>
+    <div id="app">
+        <button onclick="sayHello()">Say Hello</button>
+        <div id="output"></div>
+    </div>
+    
+    <script>
+        function sayHello() {
+            fetch('/hello')
+                .then(res => res.json())
+                .then(data => {
+                    document.getElementById('output').innerText = data.message;
+                });
+        }
+    </script>
+</body>
+</html>
